@@ -185,65 +185,69 @@ public class AdminMenu {
     }
 
     // option 3: view pending requests and approve or reject them
+    // stays on this screen after each action until admin enters 0 to go back
     private void approveRequests() {
-        System.out.println("\n  -- Leave / Overtime Approval --");
+        while (true) {
+            System.out.println("\n  -- Leave / Overtime Approval --");
 
-        // check if any requests are pending
-        boolean hasPending = false;
-        for (LeaveOvertimeRequest req : AccountManager.requests) {
-            if (req.getStatus().equals("Pending")) {
-                hasPending = true;
-                break;
-            }
-        }
-
-        if (!hasPending) {
-            System.out.println("  No pending leave or overtime requests at the moment.");
-            return;
-        }
-
-        // show only pending requests, numbered for selection
-        System.out.println("  Pending Requests:");
-        System.out.println();
-        int index = 1;
-        for (LeaveOvertimeRequest req : AccountManager.requests) {
-            if (req.getStatus().equals("Pending")) {
-                System.out.println("  [" + index + "] " + req);
-                index++;
-            }
-        }
-
-        System.out.print("\n  Enter request number to act on (0 to go back): ");
-        int pick = readInt();
-        if (pick == 0) return;
-
-        // find the selected request
-        int count = 0;
-        LeaveOvertimeRequest chosen = null;
-        for (LeaveOvertimeRequest req : AccountManager.requests) {
-            if (req.getStatus().equals("Pending")) {
-                count++;
-                if (count == pick) {
-                    chosen = req;
+            // check if any requests are pending
+            boolean hasPending = false;
+            for (LeaveOvertimeRequest req : AccountManager.requests) {
+                if (req.getStatus().equals("Pending")) {
+                    hasPending = true;
                     break;
                 }
             }
-        }
 
-        if (chosen == null) {
-            System.out.println("  Invalid selection.");
-            return;
-        }
+            if (!hasPending) {
+                System.out.println("  No pending leave or overtime requests at the moment.");
+                return;
+            }
 
-        // show selected request and ask admin what to do
-        System.out.println("\n  Selected: " + chosen);
-        System.out.print("  [A] Approve   [R] Reject   [0] Cancel: ");
-        String action = sc.nextLine().trim().toUpperCase();
+            // show only pending requests, numbered for selection
+            System.out.println("  Pending Requests:");
+            System.out.println();
+            int index = 1;
+            for (LeaveOvertimeRequest req : AccountManager.requests) {
+                if (req.getStatus().equals("Pending")) {
+                    System.out.println("  [" + index + "] " + req);
+                    index++;
+                }
+            }
 
-        switch (action) {
-            case "A" -> { chosen.setStatus("Approved"); System.out.println("  Request APPROVED."); }
-            case "R" -> { chosen.setStatus("Rejected"); System.out.println("  Request REJECTED."); }
-            default  ->   System.out.println("  Action cancelled.");
+            System.out.print("\n  Enter request number to act on (0 to go back): ");
+            int pick = readInt();
+            if (pick == 0) return;
+
+            // find the selected request
+            int count = 0;
+            LeaveOvertimeRequest chosen = null;
+            for (LeaveOvertimeRequest req : AccountManager.requests) {
+                if (req.getStatus().equals("Pending")) {
+                    count++;
+                    if (count == pick) {
+                        chosen = req;
+                        break;
+                    }
+                }
+            }
+
+            if (chosen == null) {
+                System.out.println("  Invalid selection.");
+                continue;   // re-show the list instead of returning to menu
+            }
+
+            // show selected request and ask admin what to do
+            System.out.println("\n  Selected: " + chosen);
+            System.out.print("  [A] Approve   [R] Reject   [0] Cancel: ");
+            String action = sc.nextLine().trim().toUpperCase();
+
+            switch (action) {
+                case "A" -> { chosen.setStatus("Approved"); System.out.println("  Request APPROVED."); }
+                case "R" -> { chosen.setStatus("Rejected"); System.out.println("  Request REJECTED."); }
+                default  ->   System.out.println("  Action cancelled.");
+            }
+            // loop back to show the updated pending list
         }
     }
 

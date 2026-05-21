@@ -185,7 +185,6 @@ public class AdminMenu {
     }
 
     // option 3: view pending requests and approve or reject them
-    // stays on this screen after each action until admin enters 0 to go back
     private void approveRequests() {
         while (true) {
             System.out.println("\n  -- Leave / Overtime Approval --");

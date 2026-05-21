@@ -1,0 +1,66 @@
+Processed on: 2026-05-21 17:01:21
+
+========================================================
+                   ABC Company
+               Employee Payroll System
+========================================================
+  Employee ID   : 123456
+  Employee Name : Marcus
+  Employee Type : Regular
+  Cut-off Period: 1st (1st-15th)
+--------------------------------------------------------
+  TIMEKEEPING SUMMARY
+  Hours Worked  : 88.00 hrs
+  Overtime      : 0.00 hrs
+  Undertime     : 0.00 hrs
+  Absences      : 0 day(s)
+  Paid Leaves   : 4 day(s)
+  Late          : 0.00 hrs
+--------------------------------------------------------
+  EARNINGS
+  Gross Pay     : PHP    22,500.00
+--------------------------------------------------------
+  DEDUCTIONS
+  SSS           : PHP       787.50
+  PhilHealth    : PHP       562.50
+  Pag-IBIG      : PHP        50.00
+  Tax           : PHP     1,824.10
+  Loan Deduction: PHP       500.00
+========================================================
+  NET PAY       : PHP    18,775.90
+========================================================
+
+
+Processed on: 2026-05-21 19:24:32
+
+========================================================
+                   ABC Company
+               Employee Payroll System
+========================================================
+  Employee ID   : 102706
+  Employee Name : James
+  Employee Type : Regular
+  Cut-off Period: 2nd (16th-30th)
+--------------------------------------------------------
+  TIMEKEEPING SUMMARY
+  Hours Worked  : 230.00 hrs
+  Overtime      : 161.00 hrs
+  Undertime     : 11.00 hrs
+  Absences      : 0 day(s)
+  Paid Leaves   : 5 day(s)
+  Late          : 1.00 hrs
+--------------------------------------------------------
+  EARNINGS
+  Gross Pay     : PHP    38,147.02
+--------------------------------------------------------
+  DEDUCTIONS
+  SSS           : PHP       675.00
+  PhilHealth    : PHP       375.00
+  Pag-IBIG      : PHP        50.00
+  Tax           : PHP     5,199.33
+  Loan Deduction: PHP         0.00
+========================================================
+  NET PAY       : PHP    31,847.68
+========================================================
+
+

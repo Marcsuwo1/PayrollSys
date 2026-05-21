@@ -16,14 +16,14 @@ public class LoginSystem {
             running = showRoleSelection();
         }
 
-        System.out.println("\n  Thank you for using ABC Company Payroll System. Goodbye!");
+        System.out.println("\n  Thank you for using ABC Company System. Goodbye!");
         sc.close();
     }
 
     private static boolean showRoleSelection() {
         System.out.println();
         System.out.println("  ╔══════════════════════════════════════════╗");
-        System.out.println("  ║       ABC Company Payroll System         ║");
+        System.out.println("  ║                ABC Company               ║");
         System.out.println("  ╠══════════════════════════════════════════╣");
         System.out.println("  ║   Please select your role to continue:   ║");
         System.out.println("  ║                                          ║");

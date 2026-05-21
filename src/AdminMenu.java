@@ -125,6 +125,10 @@ public class AdminMenu {
         // mark as done so it disappears from the queue
         chosen.markProcessed();
         System.out.println("  This time record has been marked as processed.");
+
+        // persist: update time records file and append the payslip to the log
+        FileManager.saveTimeRecords();
+        FileManager.appendPayslip(payroll.getPayslipText());
     }
 
     // option 2: creates a new employee account (ID, name, type, salary, password)
@@ -182,9 +186,13 @@ public class AdminMenu {
 
         System.out.println("  Account created successfully!");
         System.out.printf("  Name: %-20s | ID: %s | Type: %s%n", name, id, type);
+
+        // persist the new account immediately
+        FileManager.saveEmployees();
     }
 
     // option 3: view pending requests and approve or reject them
+    // stays on this screen after each action until admin enters 0 to go back
     private void approveRequests() {
         while (true) {
             System.out.println("\n  -- Leave / Overtime Approval --");
@@ -242,8 +250,8 @@ public class AdminMenu {
             String action = sc.nextLine().trim().toUpperCase();
 
             switch (action) {
-                case "A" -> { chosen.setStatus("Approved"); System.out.println("  Request APPROVED."); }
-                case "R" -> { chosen.setStatus("Rejected"); System.out.println("  Request REJECTED."); }
+                case "A" -> { chosen.setStatus("Approved"); System.out.println("  Request APPROVED."); FileManager.saveRequests(); }
+                case "R" -> { chosen.setStatus("Rejected"); System.out.println("  Request REJECTED."); FileManager.saveRequests(); }
                 default  ->   System.out.println("  Action cancelled.");
             }
             // loop back to show the updated pending list

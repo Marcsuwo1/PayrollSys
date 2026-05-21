@@ -7,6 +7,9 @@ public class LoginSystem {
 
     public static void main(String[] args) {
 
+        // load all saved data from disk before showing the menu
+        FileManager.loadAll();
+
         // keeps the login screen running until the user exits
         boolean running = true;
         while (running) {

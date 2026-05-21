@@ -214,4 +214,41 @@ public class Payroll {
 
     // getter so other classes can read the net pay result
     public double getNetPay() { return netPay; }
+
+    // returns the full payslip as a String (used by FileManager to write to disk)
+    public String getPayslipText() {
+        String period = (cutoffPeriod == 1) ? "1st (1st-15th)" : "2nd (16th-30th)";
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n");
+        sb.append("========================================================\n");
+        sb.append("                   ABC Company\n");
+        sb.append("               Employee Payroll System\n");
+        sb.append("========================================================\n");
+        sb.append("  Employee ID   : ").append(employee.getEmployeeId()).append("\n");
+        sb.append("  Employee Name : ").append(employee.getEmployeeName()).append("\n");
+        sb.append("  Employee Type : ").append(employee.getEmployeeType()).append("\n");
+        sb.append("  Cut-off Period: ").append(period).append("\n");
+        sb.append("--------------------------------------------------------\n");
+        sb.append("  TIMEKEEPING SUMMARY\n");
+        sb.append(String.format("  Hours Worked  : %.2f hrs%n",    totalHoursWorked));
+        sb.append(String.format("  Overtime      : %.2f hrs%n",    overtimeHours));
+        sb.append(String.format("  Undertime     : %.2f hrs%n",    undertimeHours));
+        sb.append(String.format("  Absences      : %.0f day(s)%n", absences));
+        sb.append(String.format("  Paid Leaves   : %.0f day(s)%n", paidLeaveDays));
+        sb.append(String.format("  Late          : %.2f hrs%n",    lateHours));
+        sb.append("--------------------------------------------------------\n");
+        sb.append("  EARNINGS\n");
+        sb.append(String.format("  Gross Pay     : PHP %,12.2f%n", grossPay));
+        sb.append("--------------------------------------------------------\n");
+        sb.append("  DEDUCTIONS\n");
+        sb.append(String.format("  SSS           : PHP %,12.2f%n", sss));
+        sb.append(String.format("  PhilHealth    : PHP %,12.2f%n", philhealth));
+        sb.append(String.format("  Pag-IBIG      : PHP %,12.2f%n", pagibig));
+        sb.append(String.format("  Tax           : PHP %,12.2f%n", tax));
+        sb.append(String.format("  Loan Deduction: PHP %,12.2f%n", loanDeduction));
+        sb.append("========================================================\n");
+        sb.append(String.format("  NET PAY       : PHP %,12.2f%n", netPay));
+        sb.append("========================================================\n");
+        return sb.toString();
+    }
 }

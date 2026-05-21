@@ -107,6 +107,9 @@ public class EmployeeMenu {
         System.out.println();
         System.out.println("  Time record submitted successfully!");
         System.out.println("  The admin will process your payroll from this data.");
+
+        // persist to disk so it survives a restart
+        FileManager.saveTimeRecords();
     }
 
     // option 2: employee files a leave or overtime request
@@ -157,6 +160,9 @@ public class EmployeeMenu {
 
         System.out.println("  Your " + typeLabel + " request has been submitted!");
         System.out.println("  Status: Pending (waiting for admin approval)");
+
+        // persist to disk so it survives a restart
+        FileManager.saveRequests();
     }
 
     // option 3: shows FAQ list, lets employee pick a question to read
